@@ -1,0 +1,17 @@
+stages: # List of stages for jobs, and their order of execution
+  - build
+  #- deploy
+build-job-master: # This job runs in the build stage, which runs first.
+  stage: build
+  tags:
+    - cd
+  script:
+    - echo "mvn package  and  docker build image to harbor "\
+    - echo `date +%F-%H-%M-%S`  > image_tag
+    - /opt/apache-maven-3.8.1/bin/mvn clean -U  package -Dmaven.test.skip=true
+    - docker build -t app.lianziyou.tech:5000/public/gpt-java-admin:`cat image_tag` .
+    - docker tag  app.lianziyou.tech:5000/public/gpt-java-admin:`cat image_tag` app.lianziyou.tech:5000/public/gpt-java-admin:latest
+    - docker push app.lianziyou.tech:5000/public/gpt-java-admin:latest
+    - echo "Compile complete."
+  only:
+    - master

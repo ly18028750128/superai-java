@@ -1,0 +1,59 @@
+spring:
+  data:
+    mongodb:
+      host: 192.168.30.239
+      port: 10003
+      database: GPT_TEST_DB
+      username: admin
+      password: '123456'
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.30.239:10002/intelligent_bot_test?characterEncoding=UTF8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: 1qaz@WSX
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat
+    maxActive: 30
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 2
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 25200000
+    validationQuery: select '1'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    maxOpenPreparedStatements: 20
+  redis:
+    host: 192.168.30.99
+    port: 10006
+    database: 11
+    password: 1qaz@WSX
+    jedis:
+      pool:
+        max-idle: 100
+        min-idle: 1
+        max-active: 1000
+        max-wait: -1
+    timeout: 10000s
+  servlet:
+    multipart:
+      location: /www/temp/data
+wx:
+  mp:
+    configs:
+      - app-id: "wx71c91299e4cd1754"
+        secret: ""
+        token: ""
+        aes-key: ""
+  pay:
+    pay-page: ""
+    call-back: ""
+    configs:
+      - appId: ""
+        mchId: ""
+        mchKey: ""
+        keyPath: ""
+        privateKeyPath: ""
+        privateCertPath: ""
+        apiV3Key: ""

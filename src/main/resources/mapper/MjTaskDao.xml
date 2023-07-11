@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lianziyou.bot.dao.MjTaskDao">
+  <delete id="batchDeleteByUserId">
+    delete from mj_task where user_id = #{userId}
+  </delete>
+  <delete id="deleteByKeyId">
+    delete from mj_task where id = #{id}
+  </delete>
+  <insert id="insertSelective" parameterType="com.lianziyou.bot.model.MjTask">
+    <!--@mbg.generated-->
+    insert into mj_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="action != null">
+        `action`,
+      </if>
+      <if test="prompt != null">
+        prompt,
+      </if>
+      <if test="promptEn != null">
+        prompt_en,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="index != null">
+        `index`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="submitTime != null">
+        submit_time,
+      </if>
+      <if test="finishTime != null">
+        finish_time,
+      </if>
+      <if test="failReason != null">
+        fail_reason,
+      </if>
+      <if test="finalPrompt != null">
+        final_prompt,
+      </if>
+      <if test="notifyHook != null">
+        notify_hook,
+      </if>
+      <if test="relatedTaskId != null">
+        related_task_id,
+      </if>
+      <if test="messageId != null">
+        message_id,
+      </if>
+      <if test="messageHash != null">
+        message_hash,
+      </if>
+      <if test="progress != null">
+        progress,
+      </if>
+      <if test="subType != null">
+        sub_type,
+      </if>
+      <if test="progressMessageId != null">
+        progress_message_id,
+      </if>
+      <if test="flags != null">
+        flags,
+      </if>
+      <if test="dataVersion != null">
+        data_version,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="operator != null">
+        `operator`,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="action != null">
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="prompt != null">
+        #{prompt,jdbcType=VARCHAR},
+      </if>
+      <if test="promptEn != null">
+        #{promptEn,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="index != null">
+        #{index,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="submitTime != null">
+        #{submitTime,jdbcType=BIGINT},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=BIGINT},
+      </if>
+      <if test="failReason != null">
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="finalPrompt != null">
+        #{finalPrompt,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyHook != null">
+        #{notifyHook,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedTaskId != null">
+        #{relatedTaskId,jdbcType=BIGINT},
+      </if>
+      <if test="messageId != null">
+        #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="messageHash != null">
+        #{messageHash,jdbcType=VARCHAR},
+      </if>
+      <if test="progress != null">
+        #{progress,jdbcType=VARCHAR},
+      </if>
+      <if test="subType != null">
+        #{subType,jdbcType=TINYINT},
+      </if>
+      <if test="progressMessageId != null">
+        #{progressMessageId,jdbcType=VARCHAR},
+      </if>
+      <if test="flags != null">
+        #{flags,jdbcType=INTEGER},
+      </if>
+      <if test="dataVersion != null">
+        #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.lianziyou.bot.model.MjTask">
+    <!--@mbg.generated-->
+    <!--@Table mj_task-->
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="user_id" jdbcType="BIGINT" property="userId"/>
+    <result column="action" jdbcType="VARCHAR" property="action"/>
+    <result column="prompt" jdbcType="VARCHAR" property="prompt"/>
+    <result column="prompt_en" jdbcType="VARCHAR" property="promptEn"/>
+    <result column="description" jdbcType="VARCHAR" property="description"/>
+    <result column="state" jdbcType="VARCHAR" property="state"/>
+    <result column="index" jdbcType="INTEGER" property="index"/>
+    <result column="status" jdbcType="VARCHAR" property="status"/>
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl"/>
+    <result column="start_time" jdbcType="BIGINT" property="startTime"/>
+    <result column="submit_time" jdbcType="BIGINT" property="submitTime"/>
+    <result column="finish_time" jdbcType="BIGINT" property="finishTime"/>
+    <result column="fail_reason" jdbcType="VARCHAR" property="failReason"/>
+    <result column="final_prompt" jdbcType="VARCHAR" property="finalPrompt"/>
+    <result column="notify_hook" jdbcType="VARCHAR" property="notifyHook"/>
+    <result column="related_task_id" jdbcType="BIGINT" property="relatedTaskId"/>
+    <result column="message_id" jdbcType="VARCHAR" property="messageId"/>
+    <result column="message_hash" jdbcType="VARCHAR" property="messageHash"/>
+    <result column="progress" jdbcType="VARCHAR" property="progress"/>
+    <result column="sub_type" jdbcType="TINYINT" property="subType"/>
+    <result column="progress_message_id" jdbcType="VARCHAR" property="progressMessageId"/>
+    <result column="flags" jdbcType="INTEGER" property="flags"/>
+    <result column="data_version" jdbcType="INTEGER" property="dataVersion"/>
+    <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+    <result column="creator" jdbcType="BIGINT" property="creator"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="operator" jdbcType="BIGINT" property="operator"/>
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime"/>
+  </resultMap>
+  <select id="selectUserMjTask" resultType="com.lianziyou.bot.model.res.sys.MjTaskRes">
+    select id,
+           related_task_id,
+           `action` as taskAction,
+           prompt,
+           prompt_en,
+           `index`,
+           status,
+           image_url,
+           start_time,
+           finish_time,
+           final_prompt,
+           fail_reason
+    from mj_task
+    where user_id = #{userId}
+      and deleted = 0
+    <if test="pageParam.param != null and pageParam.param.id != null">
+      and mj_task.id = #{pageParam.param.id,jdbcType=BIGINT}
+    </if>
+    <if test="pageParam.param != null and pageParam.param.topicalId != null">
+      and mj_task.topical_id = #{pageParam.param.topicalId,jdbcType=BIGINT}
+    </if>
+
+    <if test="pageParam.param != null and pageParam.param.topicalId != null and (0 > pageParam.param.topicalId) ">
+      and mj_task.topical_id is null
+    </if>
+
+    order by id desc
+    limit #{pageParam.start,jdbcType=INTEGER}, #{pageParam.limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectTransform" resultType="com.lianziyou.bot.model.res.sys.MjTaskTransformRes">
+    select `action`, `index`, related_task_id
+    from mj_task
+    where `index` &gt; 0
+    and mj_task.status != 'FAILURE'
+    <if test="relatedTaskId != null">
+      and mj_task.related_task_id = #{relatedTaskId,jdbcType=BIGINT}
+    </if>
+  </select>
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, `action`, prompt, prompt_en, description, `state`, `index`, `status`,
+    image_url, start_time, submit_time, finish_time, fail_reason, final_prompt, notify_hook,
+    related_task_id, message_id, message_hash, progress, sub_type, progress_message_id,
+    flags, data_version, deleted, creator, create_time, `operator`, operate_time
+  </sql>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lianziyou.bot.model.MjTask">
+    <!--@mbg.generated-->
+    update mj_task
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="action != null">
+        `action` = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="prompt != null">
+        prompt = #{prompt,jdbcType=VARCHAR},
+      </if>
+      <if test="promptEn != null">
+        prompt_en = #{promptEn,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="index != null">
+        `index` = #{index,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="submitTime != null">
+        submit_time = #{submitTime,jdbcType=BIGINT},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=BIGINT},
+      </if>
+      <if test="failReason != null">
+        fail_reason = #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="finalPrompt != null">
+        final_prompt = #{finalPrompt,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyHook != null">
+        notify_hook = #{notifyHook,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedTaskId != null">
+        related_task_id = #{relatedTaskId,jdbcType=BIGINT},
+      </if>
+      <if test="messageId != null">
+        message_id = #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="messageHash != null">
+        message_hash = #{messageHash,jdbcType=VARCHAR},
+      </if>
+      <if test="progress != null">
+        progress = #{progress,jdbcType=VARCHAR},
+      </if>
+      <if test="subType != null">
+        sub_type = #{subType,jdbcType=TINYINT},
+      </if>
+      <if test="progressMessageId != null">
+        progress_message_id = #{progressMessageId,jdbcType=VARCHAR},
+      </if>
+      <if test="flags != null">
+        flags = #{flags,jdbcType=INTEGER},
+      </if>
+      <if test="dataVersion != null">
+        data_version = #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update mj_task
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+    where id in
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="`action` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.action,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="prompt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.prompt,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="prompt_en = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.promptEn,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="description = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`state` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.state,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`index` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.index,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="image_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.imageUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="start_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.startTime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="submit_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.submitTime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="finish_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.finishTime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="fail_reason = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.failReason,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="final_prompt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.finalPrompt,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="notify_hook = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.notifyHook,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="related_task_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.relatedTaskId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="message_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.messageId,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="message_hash = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.messageHash,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="progress = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.progress,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sub_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.subType,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="progress_message_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.progressMessageId,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="flags = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.flags,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="data_version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.dataVersion,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="operate_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update mj_task
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+    where id in
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`action` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.action != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.action,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="prompt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.prompt != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.prompt,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="prompt_en = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.promptEn != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.promptEn,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="description = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.description != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`state` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.state != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.state,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`index` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.index != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.index,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="image_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.imageUrl != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.imageUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="start_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.startTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.startTime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="submit_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.submitTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.submitTime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="finish_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.finishTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.finishTime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fail_reason = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.failReason != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.failReason,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="final_prompt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.finalPrompt != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.finalPrompt,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="notify_hook = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.notifyHook != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.notifyHook,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="related_task_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.relatedTaskId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.relatedTaskId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="message_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.messageId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.messageId,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="message_hash = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.messageHash != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.messageHash,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="progress = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.progress != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.progress,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sub_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.subType != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.subType,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="progress_message_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.progressMessageId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.progressMessageId,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flags = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.flags != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.flags,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="data_version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.dataVersion != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.dataVersion,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleted != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.creator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operate_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+  </update>
+</mapper>

@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lianziyou.bot.dao.SysConfigDao">
+  <insert id="insertSelective" parameterType="com.lianziyou.bot.model.SysConfig">
+    <!--@mbg.generated-->
+    insert into sys_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="registrationMethod != null">
+        registration_method,
+      </if>
+      <if test="defaultTimes != null">
+        default_times,
+      </if>
+      <if test="gptUrl != null">
+        gpt_url,
+      </if>
+      <if test="imgUploadUrl != null">
+        img_upload_url,
+      </if>
+      <if test="imgReturnUrl != null">
+        img_return_url,
+      </if>
+      <if test="apiUrl != null">
+        api_url,
+      </if>
+      <if test="clientUrl != null">
+        client_url,
+      </if>
+      <if test="isOpenSd != null">
+        is_open_sd,
+      </if>
+      <if test="sdUrl != null">
+        sd_url,
+      </if>
+      <if test="sdLoraUrl != null">
+        sd_lora_url,
+      </if>
+      <if test="isOpenFlagStudio != null">
+        is_open_flag_studio,
+      </if>
+      <if test="flagStudioKey != null">
+        flag_studio_key,
+      </if>
+      <if test="flagStudioUrl != null">
+        flag_studio_url,
+      </if>
+      <if test="baiduAppid != null">
+        baidu_appid,
+      </if>
+      <if test="baiduSecret != null">
+        baidu_secret,
+      </if>
+      <if test="baiduKey != null">
+        baidu_key,
+      </if>
+      <if test="baiduSecretKey != null">
+        baidu_secret_key,
+      </if>
+      <if test="isOpenMj != null">
+        is_open_mj,
+      </if>
+      <if test="mjGuildId != null">
+        mj_guild_id,
+      </if>
+      <if test="mjChannelId != null">
+        mj_channel_id,
+      </if>
+      <if test="mjUserToken != null">
+        mj_user_token,
+      </if>
+      <if test="mjBotToken != null">
+        mj_bot_token,
+      </if>
+      <if test="mjBotName != null">
+        mj_bot_name,
+      </if>
+      <if test="isOpenProxy != null">
+        is_open_proxy,
+      </if>
+      <if test="proxyIp != null">
+        proxy_ip,
+      </if>
+      <if test="proxyPort != null">
+        proxy_port,
+      </if>
+      <if test="isOpenBing != null">
+        is_open_bing,
+      </if>
+      <if test="bingCookie != null">
+        bing_cookie,
+      </if>
+      <if test="isOpenStableStudio != null">
+        is_open_stable_studio,
+      </if>
+      <if test="stableStudioApi != null">
+        stable_studio_api,
+      </if>
+      <if test="stableStudioKey != null">
+        stable_studio_key,
+      </if>
+      <if test="clientLogo != null">
+        client_logo,
+      </if>
+      <if test="clientName != null">
+        client_name,
+      </if>
+      <if test="dataVersion != null">
+        data_version,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="operator != null">
+        `operator`,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="registrationMethod != null">
+        #{registrationMethod,jdbcType=TINYINT},
+      </if>
+      <if test="defaultTimes != null">
+        #{defaultTimes,jdbcType=INTEGER},
+      </if>
+      <if test="gptUrl != null">
+        #{gptUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUploadUrl != null">
+        #{imgUploadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgReturnUrl != null">
+        #{imgReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="apiUrl != null">
+        #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="clientUrl != null">
+        #{clientUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenSd != null">
+        #{isOpenSd,jdbcType=TINYINT},
+      </if>
+      <if test="sdUrl != null">
+        #{sdUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sdLoraUrl != null">
+        #{sdLoraUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenFlagStudio != null">
+        #{isOpenFlagStudio,jdbcType=TINYINT},
+      </if>
+      <if test="flagStudioKey != null">
+        #{flagStudioKey,jdbcType=VARCHAR},
+      </if>
+      <if test="flagStudioUrl != null">
+        #{flagStudioUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduAppid != null">
+        #{baiduAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduSecret != null">
+        #{baiduSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduKey != null">
+        #{baiduKey,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduSecretKey != null">
+        #{baiduSecretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenMj != null">
+        #{isOpenMj,jdbcType=TINYINT},
+      </if>
+      <if test="mjGuildId != null">
+        #{mjGuildId,jdbcType=BIGINT},
+      </if>
+      <if test="mjChannelId != null">
+        #{mjChannelId,jdbcType=BIGINT},
+      </if>
+      <if test="mjUserToken != null">
+        #{mjUserToken,jdbcType=VARCHAR},
+      </if>
+      <if test="mjBotToken != null">
+        #{mjBotToken,jdbcType=VARCHAR},
+      </if>
+      <if test="mjBotName != null">
+        #{mjBotName,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenProxy != null">
+        #{isOpenProxy,jdbcType=TINYINT},
+      </if>
+      <if test="proxyIp != null">
+        #{proxyIp,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyPort != null">
+        #{proxyPort,jdbcType=INTEGER},
+      </if>
+      <if test="isOpenBing != null">
+        #{isOpenBing,jdbcType=TINYINT},
+      </if>
+      <if test="bingCookie != null">
+        #{bingCookie,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenStableStudio != null">
+        #{isOpenStableStudio,jdbcType=TINYINT},
+      </if>
+      <if test="stableStudioApi != null">
+        #{stableStudioApi,jdbcType=VARCHAR},
+      </if>
+      <if test="stableStudioKey != null">
+        #{stableStudioKey,jdbcType=VARCHAR},
+      </if>
+      <if test="clientLogo != null">
+        #{clientLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null">
+        #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataVersion != null">
+        #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.lianziyou.bot.model.SysConfig">
+    <!--@mbg.generated-->
+    <!--@Table sys_config-->
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="registration_method" jdbcType="TINYINT" property="registrationMethod"/>
+    <result column="default_times" jdbcType="INTEGER" property="defaultTimes"/>
+    <result column="gpt_url" jdbcType="VARCHAR" property="gptUrl"/>
+    <result column="img_upload_url" jdbcType="VARCHAR" property="imgUploadUrl"/>
+    <result column="img_return_url" jdbcType="VARCHAR" property="imgReturnUrl"/>
+    <result column="api_url" jdbcType="VARCHAR" property="apiUrl"/>
+    <result column="client_url" jdbcType="VARCHAR" property="clientUrl"/>
+    <result column="is_open_sd" jdbcType="TINYINT" property="isOpenSd"/>
+    <result column="sd_url" jdbcType="VARCHAR" property="sdUrl"/>
+    <result column="sd_lora_url" jdbcType="VARCHAR" property="sdLoraUrl"/>
+    <result column="is_open_flag_studio" jdbcType="TINYINT" property="isOpenFlagStudio"/>
+    <result column="flag_studio_key" jdbcType="VARCHAR" property="flagStudioKey"/>
+    <result column="flag_studio_url" jdbcType="VARCHAR" property="flagStudioUrl"/>
+    <result column="baidu_appid" jdbcType="VARCHAR" property="baiduAppid"/>
+    <result column="baidu_secret" jdbcType="VARCHAR" property="baiduSecret"/>
+    <result column="baidu_key" jdbcType="VARCHAR" property="baiduKey"/>
+    <result column="baidu_secret_key" jdbcType="VARCHAR" property="baiduSecretKey"/>
+    <result column="is_open_mj" jdbcType="TINYINT" property="isOpenMj"/>
+    <result column="mj_guild_id" jdbcType="BIGINT" property="mjGuildId"/>
+    <result column="mj_channel_id" jdbcType="BIGINT" property="mjChannelId"/>
+    <result column="mj_user_token" jdbcType="VARCHAR" property="mjUserToken"/>
+    <result column="mj_bot_token" jdbcType="VARCHAR" property="mjBotToken"/>
+    <result column="mj_bot_name" jdbcType="VARCHAR" property="mjBotName"/>
+    <result column="is_open_proxy" jdbcType="TINYINT" property="isOpenProxy"/>
+    <result column="proxy_ip" jdbcType="VARCHAR" property="proxyIp"/>
+    <result column="proxy_port" jdbcType="INTEGER" property="proxyPort"/>
+    <result column="is_open_bing" jdbcType="TINYINT" property="isOpenBing"/>
+    <result column="bing_cookie" jdbcType="VARCHAR" property="bingCookie"/>
+    <result column="is_open_stable_studio" jdbcType="TINYINT" property="isOpenStableStudio"/>
+    <result column="stable_studio_api" jdbcType="VARCHAR" property="stableStudioApi"/>
+    <result column="stable_studio_key" jdbcType="VARCHAR" property="stableStudioKey"/>
+    <result column="client_logo" jdbcType="VARCHAR" property="clientLogo"/>
+    <result column="client_name" jdbcType="VARCHAR" property="clientName"/>
+    <result column="data_version" jdbcType="INTEGER" property="dataVersion"/>
+    <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+    <result column="creator" jdbcType="BIGINT" property="creator"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="operator" jdbcType="BIGINT" property="operator"/>
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, registration_method, default_times, gpt_url, img_upload_url, img_return_url,
+    api_url, client_url, is_open_sd, sd_url, sd_lora_url, is_open_flag_studio, flag_studio_key,
+    flag_studio_url, baidu_appid, baidu_secret, baidu_key, baidu_secret_key, is_open_mj,
+    mj_guild_id, mj_channel_id, mj_user_token, mj_bot_token, mj_bot_name, is_open_proxy,
+    proxy_ip, proxy_port, is_open_bing, bing_cookie, is_open_stable_studio, stable_studio_api,
+    stable_studio_key, client_logo, client_name, data_version, deleted, creator, create_time,
+    `operator`, operate_time
+  </sql>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lianziyou.bot.model.SysConfig">
+    <!--@mbg.generated-->
+    update sys_config
+    <set>
+      <if test="registrationMethod != null">
+        registration_method = #{registrationMethod,jdbcType=TINYINT},
+      </if>
+      <if test="defaultTimes != null">
+        default_times = #{defaultTimes,jdbcType=INTEGER},
+      </if>
+      <if test="gptUrl != null">
+        gpt_url = #{gptUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUploadUrl != null">
+        img_upload_url = #{imgUploadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgReturnUrl != null">
+        img_return_url = #{imgReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="apiUrl != null">
+        api_url = #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="clientUrl != null">
+        client_url = #{clientUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenSd != null">
+        is_open_sd = #{isOpenSd,jdbcType=TINYINT},
+      </if>
+      <if test="sdUrl != null">
+        sd_url = #{sdUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sdLoraUrl != null">
+        sd_lora_url = #{sdLoraUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenFlagStudio != null">
+        is_open_flag_studio = #{isOpenFlagStudio,jdbcType=TINYINT},
+      </if>
+      <if test="flagStudioKey != null">
+        flag_studio_key = #{flagStudioKey,jdbcType=VARCHAR},
+      </if>
+      <if test="flagStudioUrl != null">
+        flag_studio_url = #{flagStudioUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduAppid != null">
+        baidu_appid = #{baiduAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduSecret != null">
+        baidu_secret = #{baiduSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduKey != null">
+        baidu_key = #{baiduKey,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduSecretKey != null">
+        baidu_secret_key = #{baiduSecretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenMj != null">
+        is_open_mj = #{isOpenMj,jdbcType=TINYINT},
+      </if>
+      <if test="mjGuildId != null">
+        mj_guild_id = #{mjGuildId,jdbcType=BIGINT},
+      </if>
+      <if test="mjChannelId != null">
+        mj_channel_id = #{mjChannelId,jdbcType=BIGINT},
+      </if>
+      <if test="mjUserToken != null">
+        mj_user_token = #{mjUserToken,jdbcType=VARCHAR},
+      </if>
+      <if test="mjBotToken != null">
+        mj_bot_token = #{mjBotToken,jdbcType=VARCHAR},
+      </if>
+      <if test="mjBotName != null">
+        mj_bot_name = #{mjBotName,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenProxy != null">
+        is_open_proxy = #{isOpenProxy,jdbcType=TINYINT},
+      </if>
+      <if test="proxyIp != null">
+        proxy_ip = #{proxyIp,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyPort != null">
+        proxy_port = #{proxyPort,jdbcType=INTEGER},
+      </if>
+      <if test="isOpenBing != null">
+        is_open_bing = #{isOpenBing,jdbcType=TINYINT},
+      </if>
+      <if test="bingCookie != null">
+        bing_cookie = #{bingCookie,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpenStableStudio != null">
+        is_open_stable_studio = #{isOpenStableStudio,jdbcType=TINYINT},
+      </if>
+      <if test="stableStudioApi != null">
+        stable_studio_api = #{stableStudioApi,jdbcType=VARCHAR},
+      </if>
+      <if test="stableStudioKey != null">
+        stable_studio_key = #{stableStudioKey,jdbcType=VARCHAR},
+      </if>
+      <if test="clientLogo != null">
+        client_logo = #{clientLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null">
+        client_name = #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataVersion != null">
+        data_version = #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sys_config
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+    where id in
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="registration_method = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.registrationMethod,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="default_times = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.defaultTimes,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="gpt_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.gptUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="img_upload_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.imgUploadUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="img_return_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.imgReturnUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="api_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.apiUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="client_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.clientUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_open_sd = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenSd,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="sd_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.sdUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sd_lora_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.sdLoraUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_open_flag_studio = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenFlagStudio,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="flag_studio_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.flagStudioKey,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="flag_studio_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.flagStudioUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="baidu_appid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.baiduAppid,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="baidu_secret = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.baiduSecret,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="baidu_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.baiduKey,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="baidu_secret_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.baiduSecretKey,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_open_mj = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenMj,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="mj_guild_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.mjGuildId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="mj_channel_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.mjChannelId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="mj_user_token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.mjUserToken,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="mj_bot_token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.mjBotToken,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="mj_bot_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.mjBotName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_open_proxy = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenProxy,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="proxy_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.proxyIp,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="proxy_port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.proxyPort,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="is_open_bing = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenBing,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="bing_cookie = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.bingCookie,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_open_stable_studio = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenStableStudio,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="stable_studio_api = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.stableStudioApi,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="stable_studio_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.stableStudioKey,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="client_logo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.clientLogo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="client_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.clientName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="data_version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.dataVersion,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="operate_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sys_config
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+    where id in
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="registration_method = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.registrationMethod != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.registrationMethod,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="default_times = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.defaultTimes != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.defaultTimes,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="gpt_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gptUrl != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.gptUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="img_upload_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.imgUploadUrl != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.imgUploadUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="img_return_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.imgReturnUrl != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.imgReturnUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="api_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.apiUrl != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.apiUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="client_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.clientUrl != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.clientUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_open_sd = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isOpenSd != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenSd,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sd_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sdUrl != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.sdUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sd_lora_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sdLoraUrl != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.sdLoraUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_open_flag_studio = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isOpenFlagStudio != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenFlagStudio,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag_studio_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.flagStudioKey != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.flagStudioKey,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag_studio_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.flagStudioUrl != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.flagStudioUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="baidu_appid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.baiduAppid != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.baiduAppid,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="baidu_secret = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.baiduSecret != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.baiduSecret,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="baidu_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.baiduKey != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.baiduKey,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="baidu_secret_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.baiduSecretKey != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.baiduSecretKey,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_open_mj = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isOpenMj != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenMj,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mj_guild_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.mjGuildId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.mjGuildId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mj_channel_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.mjChannelId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.mjChannelId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mj_user_token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.mjUserToken != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.mjUserToken,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mj_bot_token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.mjBotToken != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.mjBotToken,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mj_bot_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.mjBotName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.mjBotName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_open_proxy = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isOpenProxy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenProxy,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="proxy_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.proxyIp != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.proxyIp,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="proxy_port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.proxyPort != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.proxyPort,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_open_bing = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isOpenBing != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenBing,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="bing_cookie = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.bingCookie != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.bingCookie,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_open_stable_studio = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isOpenStableStudio != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isOpenStableStudio,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="stable_studio_api = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.stableStudioApi != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.stableStudioApi,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="stable_studio_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.stableStudioKey != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.stableStudioKey,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="client_logo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.clientLogo != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.clientLogo,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="client_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.clientName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.clientName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="data_version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.dataVersion != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.dataVersion,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleted != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.creator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operate_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+  </update>
+</mapper>

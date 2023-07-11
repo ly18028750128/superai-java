@@ -1,0 +1,69 @@
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: utf-8
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params:
+spring:
+  data:
+    mongodb:
+      host: 192.168.30.239
+      port: 10003
+      database: GPT
+      username: admin
+      password: '123456'
+      authentication-database: admin
+      options:
+        always-use-m-beans: false
+        connect-timeout: 10000
+        heartbeat-connect-timeout: 20000
+        heartbeat-frequency: 10000
+        heartbeat-socket-timeout: 20000
+        local-threshold: 15
+        max-connection-idle-time: 0
+        max-connection-life-time: 0
+        max-connections-per-host: 50
+        max-wait-time: 120000
+        min-connections-per-host: 20
+        min-heartbeat-frequency: 500
+        server-selection-timeout: 5000
+        socket-keep-alive: false
+        socket-timeout: 0
+        ssl-enabled: false
+        ssl-invalid-host-name-allowed: false
+        threads-allowed-to-block-for-connection-multiplier: 5
+  profiles:
+    active: dev
+  mvc:
+    async:
+      request-timeout: 30000
+    static-path-pattern: /static/**
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  #    设置上传文件大小
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${file.uploadPath}
+#配置mybatis-plus 开启日志
+mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+  mapper-locations: classpath:mapper/*.xml
+logging:
+  level:
+    com.lianziyou.bot.dao: info
+    root: info
+
+
+

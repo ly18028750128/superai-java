@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lianziyou.bot.dao.MessageLogDao">
+  <resultMap id="BaseResultMap" type="com.lianziyou.bot.model.MessageLog">
+    <!--@mbg.generated-->
+    <!--@Table message_log-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="use_number" jdbcType="INTEGER" property="useNumber" />
+    <result column="use_type" jdbcType="TINYINT" property="useType" />
+    <result column="use_value" jdbcType="VARCHAR" property="useValue" />
+    <result column="gpt_key" jdbcType="VARCHAR" property="gptKey" />
+    <result column="send_type" jdbcType="TINYINT" property="sendType" />
+    <result column="data_version" jdbcType="INTEGER" property="dataVersion" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="creator" jdbcType="BIGINT" property="creator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="operator" jdbcType="BIGINT" property="operator" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="init_prompt" jdbcType="VARCHAR" property="initPrompt" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="tag_name" jdbcType="VARCHAR" property="tagName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, use_number, use_type, use_value, gpt_key, send_type, data_version, deleted, 
+    creator, create_time, `operator`, operate_time, init_prompt, `name`, tag_name
+  </sql>
+  <insert id="insertSelective" parameterType="com.lianziyou.bot.model.MessageLog">
+    <!--@mbg.generated-->
+    insert into message_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="useNumber != null">
+        use_number,
+      </if>
+      <if test="useType != null">
+        use_type,
+      </if>
+      <if test="useValue != null">
+        use_value,
+      </if>
+      <if test="gptKey != null">
+        gpt_key,
+      </if>
+      <if test="sendType != null">
+        send_type,
+      </if>
+      <if test="dataVersion != null">
+        data_version,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="operator != null">
+        `operator`,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+      <if test="initPrompt != null">
+        init_prompt,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="tagName != null">
+        tag_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="useNumber != null">
+        #{useNumber,jdbcType=INTEGER},
+      </if>
+      <if test="useType != null">
+        #{useType,jdbcType=TINYINT},
+      </if>
+      <if test="useValue != null">
+        #{useValue,jdbcType=VARCHAR},
+      </if>
+      <if test="gptKey != null">
+        #{gptKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sendType != null">
+        #{sendType,jdbcType=TINYINT},
+      </if>
+      <if test="dataVersion != null">
+        #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="initPrompt != null">
+        #{initPrompt,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tagName != null">
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lianziyou.bot.model.MessageLog">
+    <!--@mbg.generated-->
+    update message_log
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="useNumber != null">
+        use_number = #{useNumber,jdbcType=INTEGER},
+      </if>
+      <if test="useType != null">
+        use_type = #{useType,jdbcType=TINYINT},
+      </if>
+      <if test="useValue != null">
+        use_value = #{useValue,jdbcType=VARCHAR},
+      </if>
+      <if test="gptKey != null">
+        gpt_key = #{gptKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sendType != null">
+        send_type = #{sendType,jdbcType=TINYINT},
+      </if>
+      <if test="dataVersion != null">
+        data_version = #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="initPrompt != null">
+        init_prompt = #{initPrompt,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tagName != null">
+        tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update message_log
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="use_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.useNumber,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="use_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.useType,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="use_value = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.useValue,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="gpt_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.gptKey,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="send_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.sendType,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="data_version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.dataVersion,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="operate_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="init_prompt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.initPrompt,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="tag_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.tagName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update message_log
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="use_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.useNumber != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.useNumber,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="use_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.useType != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.useType,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="use_value = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.useValue != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.useValue,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="gpt_key = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gptKey != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.gptKey,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="send_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sendType != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.sendType,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="data_version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.dataVersion != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.dataVersion,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleted != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.creator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operate_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="init_prompt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.initPrompt != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.initPrompt,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="tag_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tagName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.tagName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+  <update id="updateLog">
+    update message_log
+    <set>
+      <if test="name != null and name != ''">
+        name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null and name != ''">
+        , tag_name = #{tagName,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+    <if test="userId != null">
+      and user_id = #{userId,jdbcType=BIGINT}
+    </if>
+  </update>
+</mapper>

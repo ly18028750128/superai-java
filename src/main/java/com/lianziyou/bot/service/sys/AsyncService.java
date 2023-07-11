@@ -1,0 +1,100 @@
+package com.lianziyou.bot.service.sys;
+
+
+import cn.hutool.core.io.FileUtil;
+import com.alibaba.fastjson.JSONObject;
+import com.lianziyou.bot.constant.CommonConst;
+import com.lianziyou.bot.enums.sys.SendType;
+import com.lianziyou.bot.model.GptKey;
+import com.lianziyou.bot.model.MessageLog;
+import com.lianziyou.bot.model.MjTask;
+import com.lianziyou.bot.model.SysConfig;
+import com.lianziyou.bot.model.User;
+import com.lianziyou.bot.model.gpt.Message;
+import com.lianziyou.bot.model.req.sys.MessageLogSave;
+import com.lianziyou.bot.utils.sys.DateUtil;
+import com.lianziyou.bot.utils.sys.RedisUtil;
+import com.theokanning.openai.completion.chat.ChatMessageRole;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.annotation.Resource;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+
+@Component
+@Log4j2
+public class AsyncService {
+
+
+    @Resource
+    IGptKeyService gptKeyService;
+
+    @Resource
+    IMessageLogService useLogService;
+
+    @Resource
+    IUserService userService;
+
+    @Resource
+    @Lazy
+    IMjTaskService mjTaskService;
+
+
+    @Async
+    public void updateKeyNumber(String key) {
+        gptKeyService.lambdaUpdate().eq(GptKey::getKey, key).setSql("use_number = use_number + 1").update();
+    }
+
+    @Async
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public void updateKeyState(String key) {
+//       gptKeyService.lambdaUpdate().eq(GptKey::getKey,key).set(GptKey::getState,1).update();
+//        InitUtil.removeKey(key);
+    }
+
+    @Async
+    public void updateLog(Long logId, MessageLogSave messageLogSave) {
+        messageLogSave.setEndTime(DateUtil.getLocalDateTimeNow());
+        useLogService.lambdaUpdate().eq(MessageLog::getId, logId).set(MessageLog::getUseValue, JSONObject.toJSONString(messageLogSave)).update();
+    }
+
+    @Async
+    public void updateMjTask(MjTask mjTask) {
+        mjTask.setFinishTime(System.currentTimeMillis());
+        mjTaskService.updateById(mjTask);
+    }
+
+    @Async
+    public void endOfAnswer(Long logId, String value) {
+        MessageLog messageLog = useLogService.getById(logId);
+        List<Message> messageList = JSONObject.parseArray(messageLog.getUseValue(), Message.class);
+        if (messageLog.getSendType().equals(SendType.BING.getType())) {
+            messageList.add(Message.ofAssistant(value.replaceAll(CommonConst.EMOJI, " ")));
+        } else {
+            messageList.add(Message.ofAssistant(value));
+        }
+        messageList = messageList.stream().filter(item -> !item.getRole().equals(ChatMessageRole.SYSTEM.value())).collect(Collectors.toList());
+        useLogService.lambdaUpdate().eq(MessageLog::getId, logId).set(MessageLog::getUseValue, JSONObject.toJSONString(messageList)).update();
+    }
+
+    @Async
+    public void updateRemainingTimes(Long userId, Integer number) {
+        userService.lambdaUpdate().eq(User::getId, userId).setSql("remaining_times = remaining_times + " + number).update();
+    }
+
+    @Async
+    public void deleteImages(List<String> images) {
+        SysConfig sysConfig = RedisUtil.getCacheObject(CommonConst.SYS_CONFIG);
+        images.forEach(i -> {
+            String filePatch = sysConfig.getImgUploadUrl() + i;
+            log.info("删除文件路径：{}", filePatch);
+            FileUtil.del(filePatch);
+        });
+    }
+
+}

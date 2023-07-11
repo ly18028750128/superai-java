@@ -1,0 +1,17 @@
+version: '3'
+services:
+  gpt-java-admin:
+    #build: .
+    image: app.lianziyou.tech:5000/public/gpt-java-admin:latest
+    container_name: gpt-java-admin
+    restart: always
+    ports:
+      - "8082:9000"
+    volumes:
+      - ./gptfile/:/gpt/file/
+    environment:
+      - "JAVA_OPTS= -Dspring.profiles.active=test \
+                    -Dserver.port=9000 \
+                    -Xms512m \
+                    -Xmx2048m"
+

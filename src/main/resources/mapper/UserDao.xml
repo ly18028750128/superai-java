@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lianziyou.bot.dao.UserDao">
+  <insert id="insertSelective" parameterType="com.lianziyou.bot.model.User">
+    <!--@mbg.generated-->
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="remainingTimes != null">
+        remaining_times,
+      </if>
+      <if test="fromUserName != null">
+        from_user_name,
+      </if>
+      <if test="isEvent != null">
+        is_event,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="ipAddress != null">
+        ip_address,
+      </if>
+      <if test="browserFingerprint != null">
+        browser_fingerprint,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="dataVersion != null">
+        data_version,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="operator != null">
+        `operator`,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="remainingTimes != null">
+        #{remainingTimes,jdbcType=INTEGER},
+      </if>
+      <if test="fromUserName != null">
+        #{fromUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEvent != null">
+        #{isEvent,jdbcType=TINYINT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="browserFingerprint != null">
+        #{browserFingerprint,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="dataVersion != null">
+        #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.lianziyou.bot.model.User">
+    <!--@mbg.generated-->
+    <!--@Table t_user-->
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+    <result column="password" jdbcType="VARCHAR" property="password"/>
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+    <result column="type" jdbcType="TINYINT" property="type"/>
+    <result column="remaining_times" jdbcType="INTEGER" property="remainingTimes"/>
+    <result column="from_user_name" jdbcType="VARCHAR" property="fromUserName"/>
+    <result column="is_event" jdbcType="TINYINT" property="isEvent"/>
+    <result column="email" jdbcType="VARCHAR" property="email"/>
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress"/>
+    <result column="browser_fingerprint" jdbcType="VARCHAR" property="browserFingerprint"/>
+    <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+    <result column="data_version" jdbcType="INTEGER" property="dataVersion"/>
+    <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+    <result column="creator" jdbcType="BIGINT" property="creator"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="operator" jdbcType="BIGINT" property="operator"/>
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime"/>
+  </resultMap>
+  <select id="checkTempUser" resultType="com.lianziyou.bot.model.User">
+    select
+    id,
+    name,
+    mobile,
+    type,
+    remaining_times
+    from
+    t_user
+    where type = 2 and (ip_address = #{ipAddress} or browser_fingerprint = #{browserFingerprint})
+    and deleted = 0
+    ORDER BY browser_fingerprint
+    limit 1
+  </select>
+  <select id="queryUserPage" resultType="com.lianziyou.bot.model.res.sys.admin.UserQueryPageRes">
+    SELECT
+    id,
+    `name`,
+    mobile,
+    last_login_time,
+    type,
+    remaining_times,
+    from_user_name,
+    is_event,
+    email,
+    browser_fingerprint,
+    ip_address,
+    avatar,
+    create_time
+    FROM
+    t_user
+    where deleted = 0
+    <if test="req.name != null and req.name != ''">
+      <bind name="name" value="'%' + req.name + '%'"/>
+      and name like #{name}
+    </if>
+    <if test="req.mobile != null and req.mobile != ''">
+      <bind name="mobile" value="'%' + req.mobile + '%'"/>
+      and mobile like #{mobile}
+    </if>
+    order by id desc
+  </select>
+  <select id="adminHome" resultType="com.lianziyou.bot.model.res.sys.admin.AdminHomeRes">
+    SELECT ifnull(u.dayUserNumber, 0)     AS dayUserNumber,
+           ifnull(o1.dayOrderNumber, 0)   AS dayOrderNumber,
+           ifnull(o2.dayOkOrderNumber, 0) AS dayOkOrderNumber,
+           ifnull(o3.dayPrice, 0)         AS dayPrice
+    FROM (SELECT count(1) AS dayUserNumber
+          FROM `t_user`
+          WHERE date_format(create_time, '%Y-%m-%d') = CURDATE()) u,
+         (SELECT count(1) AS dayOrderNumber
+          FROM t_order
+          WHERE date_format(create_time, '%Y-%m-%d') = CURDATE()) o1,
+         (SELECT count(1) AS dayOkOrderNumber
+          FROM t_order
+          WHERE date_format(create_time, '%Y-%m-%d') = CURDATE()
+            AND state = 1) o2,
+         (SELECT sum(price) AS dayPrice
+          FROM t_order
+          WHERE state = 1
+            AND date_format(create_time, '%Y-%m-%d') = CURDATE()) o3
+  </select>
+  <select id="getOne" resultType="com.lianziyou.bot.model.User">
+    select * from t_user where deleted = 0
+    <if test="mobile != null and mobile != ''">
+      and mobile = #{mobile}
+    </if>
+    <if test="fromUser != null and fromUser != ''">
+      and from_user_name = #{fromUser}
+    </if>
+  </select>
+
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, mobile, `password`, last_login_time, `type`, remaining_times, from_user_name,
+    is_event, email, ip_address, browser_fingerprint, avatar, data_version, deleted,
+    creator, create_time, `operator`, operate_time
+  </sql>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lianziyou.bot.model.User">
+    <!--@mbg.generated-->
+    update t_user
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="remainingTimes != null">
+        remaining_times = #{remainingTimes,jdbcType=INTEGER},
+      </if>
+      <if test="fromUserName != null">
+        from_user_name = #{fromUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEvent != null">
+        is_event = #{isEvent,jdbcType=TINYINT},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="browserFingerprint != null">
+        browser_fingerprint = #{browserFingerprint,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="dataVersion != null">
+        data_version = #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update t_user
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+    where id in
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="mobile = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.mobile,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`password` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="last_login_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.lastLoginTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="remaining_times = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remainingTimes,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="from_user_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.fromUserName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_event = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isEvent,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="ip_address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.ipAddress,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="browser_fingerprint = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.browserFingerprint,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="avatar = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.avatar,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="data_version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.dataVersion,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="operate_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.operateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update t_user
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+    where id in
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mobile = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.mobile != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.mobile,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`password` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.password != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_login_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastLoginTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.lastLoginTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.type != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="remaining_times = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.remainingTimes != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.remainingTimes,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="from_user_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fromUserName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.fromUserName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_event = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isEvent != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isEvent,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.email != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ip_address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.ipAddress != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.ipAddress,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="browser_fingerprint = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.browserFingerprint != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.browserFingerprint,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="avatar = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.avatar != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.avatar,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="data_version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.dataVersion != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.dataVersion,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleted != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.creator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`operator` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operator,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operate_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.operateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+  </update>
+  <update id="increaseRemainingTimes">
+    update t_user
+    set t_user.remaining_times = t_user.remaining_times + #{addCount,jdbcType=INTEGER}
+    where t_user.id = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>
