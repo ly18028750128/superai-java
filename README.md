@@ -186,11 +186,11 @@ stable_studio_key|StableStudio key|无
 
 - 支付宝
 
-<img src="https://raw.githubusercontent.com/ly18028750128/pic/main/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E6%AC%BE%E7%A0%81.jpg" width="120px" height="180px">  
+<img src="https://raw.githubusercontent.com/ly18028750128/pic/main/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E6%AC%BE%E7%A0%81.jpg" width="200" height="320">  
 
 - 微信
 
-<img src="https://raw.githubusercontent.com/ly18028750128/pic/main/%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E7%A0%81.jpg" width="120px" height="180px"> 
+<img src="https://raw.githubusercontent.com/ly18028750128/pic/main/%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E7%A0%81.jpg" width="200" height="320"> 
 
 ## ⭐ 记得点一个Star哦!!!!
 
